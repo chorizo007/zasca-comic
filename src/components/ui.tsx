@@ -32,13 +32,18 @@ export function Cover({
 }) {
   const [failed, setFailed] = useState(false);
   const showImage = Boolean(issue.cover) && !failed;
+  // En GitHub Pages el sitio cuelga de /nombre-del-repo/: las rutas de imagen
+  // son cadenas en tiempo de ejecución, así que hay que anteponer la base.
+  const coverSrc = issue.cover
+    ? `${import.meta.env.BASE_URL}${issue.cover.replace(/^\/+/, "")}`
+    : "";
 
   return (
     <div className={hero ? "cover cover--hero" : "cover"}>
       <div className="cover-frame">
         {showImage ? (
           <img
-            src={issue.cover}
+            src={coverSrc}
             alt={`Portada del Zasca! Cómic nº${issue.num}: ${issue.title}`}
             loading={priority ? "eager" : "lazy"}
             onError={() => setFailed(true)}
