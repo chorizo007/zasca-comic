@@ -1477,6 +1477,69 @@ h2.section-title {
   background: transparent;
 }
 
+.chip--link {
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+}
+
+.chip--link:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- Zascandiles --------------------------------------------------- */
+
+.zascandil-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.zascandil-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 16px 18px;
+  border: var(--line);
+  background: var(--paper);
+  text-decoration: none;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.zascandil-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.zascandil-name {
+  font-family: var(--display);
+  font-size: 1rem;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding-right: 18px;
+}
+
+.zascandil-meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.zascandil-arrow {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 0.9rem;
+}
+
 .prose p {
   font-size: 1rem;
   line-height: 1.7;
@@ -1524,6 +1587,15 @@ h2.section-title {
 /* ---------- Adaptación ---------------------------------------------------- */
 
 @media (max-width: 1040px) {
+  .nav {
+    gap: 15px;
+  }
+
+  .nav a {
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
+  }
+
   .hero-grid {
     gap: 40px;
   }

@@ -6,6 +6,7 @@ import { Seo } from "./Seo";
 const navItems = [
   { to: "/", label: "Inicio", end: true },
   { to: "/numeros", label: "Números" },
+  { to: "/zascandiles", label: "Zascandiles" },
   { to: "/tienda", label: "Tienda" },
   { to: "/hazte-zascandil", label: "Hazte zascandil" },
   { to: "/asociacion", label: "La asociación" },
@@ -118,6 +119,9 @@ export function Layout() {
               <ul>
                 <li>
                   <Link to="/numeros">Todos los números</Link>
+                </li>
+                <li>
+                  <Link to="/zascandiles">Zascandiles</Link>
                 </li>
                 <li>
                   <Link to="/tienda">Tienda y suscripción</Link>

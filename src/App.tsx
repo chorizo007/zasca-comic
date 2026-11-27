@@ -6,6 +6,7 @@ import { IssueDetail } from "./pages/IssueDetail";
 import { Shop } from "./pages/Shop";
 import { Join } from "./pages/Join";
 import { About } from "./pages/About";
+import { Zascandiles } from "./pages/Zascandiles";
 import { News } from "./pages/News";
 import { Newsletter } from "./pages/Newsletter";
 import { NewsletterConfirm } from "./pages/NewsletterConfirm";
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="tienda" element={<Shop />} />
           <Route path="hazte-zascandil" element={<Join />} />
           <Route path="asociacion" element={<About />} />
+          <Route path="zascandiles" element={<Zascandiles />} />
           <Route path="actualidad" element={<News />} />
           <Route path="newsletter" element={<Newsletter />} />
           <Route path="newsletter/confirmado" element={<NewsletterConfirm />} />

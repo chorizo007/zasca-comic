@@ -140,6 +140,11 @@ const STATIC_PAGES: Record<string, { title: string; description: string }> = {
     description:
       "Catálogo completo de Zasca! Cómic: todas las entregas monográficas, de «Origen» al último número. Editoriales, índices, autores y compra en papel o en digital.",
   },
+  "/zascandiles": {
+    title: "Zascandiles: los autores",
+    description:
+      "Quiénes hacen Zasca! Cómic, número a número, con enlace al Instagram o la web de cada autor de la revista.",
+  },
   "/tienda": {
     title: "Tienda: papel, digital y suscripción",
     description:

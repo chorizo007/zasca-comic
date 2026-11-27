@@ -1,5 +1,6 @@
 import { Fragment, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { findZascandil } from "../data/authors";
 import { marqueeWords, type Issue } from "../data/content";
 
 /** Convierte *cursiva* y **negrita** en marcado real. */
@@ -59,6 +60,28 @@ export function Cover({
       </div>
       {issue.isNew && <span className="sticker">Nuevo</span>}
     </div>
+  );
+}
+
+/** Nombre de autor: enlace a su perfil si lo tiene, texto si no. */
+export function AuthorChip({ name }: { name: string }) {
+  const zascandil = findZascandil(name);
+
+  if (!zascandil) {
+    return <span className="chip">{name}</span>;
+  }
+
+  return (
+    <a
+      className="chip chip--link"
+      href={zascandil.url}
+      target="_blank"
+      rel="noreferrer"
+      title={`${zascandil.name} · ${zascandil.network}`}
+    >
+      {name}
+      <span aria-hidden="true"> ↗</span>
+    </a>
   );
 }
 

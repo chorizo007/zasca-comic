@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { issues } from "../data/content";
-import { BuyButtons, Cover, Rich } from "../components/ui";
+import { AuthorChip, BuyButtons, Cover, Rich } from "../components/ui";
 
 export function IssueDetail() {
   const { num } = useParams();
@@ -125,9 +125,7 @@ export function IssueDetail() {
                     <h3>Autores</h3>
                     <div className="chips">
                       {issue.authors.map((author) => (
-                        <span className="chip" key={author}>
-                          {author}
-                        </span>
+                        <AuthorChip name={author} key={author} />
                       ))}
                     </div>
                   </div>
