@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { issues, latestIssue, site } from "../data/content";
 import {
+  AuthorText,
   BuyButtons,
   Cover,
   IssueCard,
@@ -139,7 +140,9 @@ export function Home() {
                 <h3>{latestIssue.contentsTitle ?? "Índice"}</h3>
                 <ul className="contents">
                   {latestIssue.contents.slice(0, 10).map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>
+                      <AuthorText text={item} />
+                    </li>
                   ))}
                 </ul>
                 <Link

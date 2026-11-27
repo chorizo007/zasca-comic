@@ -1477,6 +1477,18 @@ h2.section-title {
   background: transparent;
 }
 
+.author-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--red);
+  text-underline-offset: 3px;
+}
+
+.author-link:hover {
+  color: var(--red);
+}
+
 .chip--link {
   text-decoration: none;
   transition:

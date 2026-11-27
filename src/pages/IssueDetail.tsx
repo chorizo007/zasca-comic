@@ -1,6 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import { issues } from "../data/content";
-import { AuthorChip, BuyButtons, Cover, Rich } from "../components/ui";
+import {
+  AuthorChip,
+  AuthorText,
+  BuyButtons,
+  Cover,
+  Rich,
+} from "../components/ui";
 
 export function IssueDetail() {
   const { num } = useParams();
@@ -105,7 +111,11 @@ export function IssueDetail() {
                     <Rich text={paragraph} />
                   </p>
                 ))}
-                {issue.sign && <p className="sign">{issue.sign}</p>}
+                {issue.sign && (
+                  <p className="sign">
+                    <AuthorText text={issue.sign} />
+                  </p>
+                )}
               </div>
 
               <div className="stack-lg">
@@ -114,7 +124,9 @@ export function IssueDetail() {
                     <h3>{issue.contentsTitle ?? "Índice"}</h3>
                     <ul className="contents">
                       {issue.contents.map((item) => (
-                        <li key={item}>{item}</li>
+                        <li key={item}>
+                          <AuthorText text={item} />
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -136,7 +148,9 @@ export function IssueDetail() {
                     <h3>Créditos</h3>
                     <ul className="contents">
                       {issue.credits.map((credit) => (
-                        <li key={credit}>{credit}</li>
+                        <li key={credit}>
+                          <AuthorText text={credit} />
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -147,8 +161,12 @@ export function IssueDetail() {
             <div className="split">
               <div className="editorial">
                 <p className="dropcap">
-                  {issue.summary ??
-                    "Este número forma parte del catálogo de Zasca! Cómic y está disponible en la tienda."}
+                  <AuthorText
+                    text={
+                      issue.summary ??
+                      "Este número forma parte del catálogo de Zasca! Cómic y está disponible en la tienda."
+                    }
+                  />
                 </p>
                 <p className="sign">
                   Asociación Zasca Cómic · {issue.date}

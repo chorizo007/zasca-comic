@@ -1,9 +1,67 @@
 import { Fragment, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { findZascandil } from "../data/authors";
+import { findZascandil, zascandiles } from "../data/authors";
 import { marqueeWords, type Issue } from "../data/content";
 
-/** Convierte *cursiva* y **negrita** en marcado real. */
+const escapeRegExp = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/** Nombres y alias, de más largo a más corto para que gane el nombre completo. */
+const authorSurfaces = [
+  ...new Set(
+    zascandiles.flatMap((zascandil) => [
+      zascandil.name,
+      ...(zascandil.aliases ?? []),
+    ]),
+  ),
+]
+  .sort((a, b) => b.length - a.length)
+  .map(escapeRegExp);
+
+const authorPattern = new RegExp(
+  `(?<![\\p{L}\\p{N}])(${authorSurfaces.join("|")})(?![\\p{L}\\p{N}])`,
+  "gu",
+);
+
+/**
+ * Texto plano con los nombres de los autores convertidos en enlace a su red.
+ * Solo enlaza coincidencias exactas y con mayúscula inicial, para no confundir
+ * «merino» o «pozo» con el apellido cuando van en minúscula.
+ */
+export function AuthorText({ text }: { text: string }) {
+  const nodes: ReactNode[] = [];
+  let last = 0;
+
+  for (const match of text.matchAll(authorPattern)) {
+    const index = match.index ?? 0;
+    if (index > last) nodes.push(text.slice(last, index));
+
+    const zascandil = findZascandil(match[0]);
+    nodes.push(
+      zascandil ? (
+        <a
+          key={index}
+          className="author-link"
+          href={zascandil.url}
+          target="_blank"
+          rel="noreferrer"
+          title={`${zascandil.name} · ${zascandil.network}`}
+        >
+          {match[0]}
+        </a>
+      ) : (
+        match[0]
+      ),
+    );
+    last = index + match[0].length;
+  }
+
+  if (last < text.length) nodes.push(text.slice(last));
+
+  return <>{nodes}</>;
+}
+
+/** Convierte *cursiva* y **negrita** en marcado real, con los autores enlazados. */
 export function Rich({ text }: { text: string }) {
   const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
 
@@ -11,12 +69,24 @@ export function Rich({ text }: { text: string }) {
     <>
       {parts.map((part, index) => {
         if (part.startsWith("**") && part.endsWith("**")) {
-          return <strong key={index}>{part.slice(2, -2)}</strong>;
+          return (
+            <strong key={index}>
+              <AuthorText text={part.slice(2, -2)} />
+            </strong>
+          );
         }
         if (part.length > 2 && part.startsWith("*") && part.endsWith("*")) {
-          return <em key={index}>{part.slice(1, -1)}</em>;
+          return (
+            <em key={index}>
+              <AuthorText text={part.slice(1, -1)} />
+            </em>
+          );
         }
-        return <Fragment key={index}>{part}</Fragment>;
+        return (
+          <Fragment key={index}>
+            <AuthorText text={part} />
+          </Fragment>
+        );
       })}
     </>
   );

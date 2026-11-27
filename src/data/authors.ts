@@ -65,7 +65,7 @@ export const zascandiles: Zascandil[] = [
     network: "Blog",
     handle: "gilypollos.blogspot.com",
     url: "https://gilypollos.blogspot.com/",
-    aliases: ["Gil&Pollos"],
+    aliases: ["Gil&Pollos", "Gil & Pollos"],
   },
   {
     name: "Iván García",
@@ -85,7 +85,7 @@ export const zascandiles: Zascandil[] = [
     network: "Instagram",
     handle: "@jmstudios81",
     url: "https://www.instagram.com/jmstudios81/",
-    aliases: ["JM"],
+    aliases: ["JM", "J.M. Studios"],
   },
   {
     name: "Jodri",
