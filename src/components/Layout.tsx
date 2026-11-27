@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { site } from "../data/content";
+import { Seo } from "./Seo";
 
 const navItems = [
   { to: "/", label: "Inicio", end: true },
@@ -35,6 +36,7 @@ export function Layout() {
         Saltar al contenido
       </a>
       <ScrollToTop />
+      <Seo />
 
       <header className="site-header">
         <div className="container">
@@ -128,6 +130,9 @@ export function Layout() {
                 </li>
                 <li>
                   <Link to="/actualidad">Actualidad</Link>
+                </li>
+                <li>
+                  <Link to="/newsletter">Boletín</Link>
                 </li>
               </ul>
             </div>

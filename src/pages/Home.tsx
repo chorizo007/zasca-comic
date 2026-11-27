@@ -8,6 +8,7 @@ import {
   Rich,
   SectionHead,
 } from "../components/ui";
+import { NewsletterForm } from "../components/NewsletterForm";
 
 export function Home() {
   const recent = issues.slice(0, 8);
@@ -170,6 +171,28 @@ export function Home() {
             {recent.map((issue) => (
               <IssueCard key={issue.num} issue={issue} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <div className="newsletter-block">
+            <div>
+              <p className="eyebrow">Boletín</p>
+              <h2 className="section-title">Aviso de cada número</h2>
+              <p className="section-sub">
+                Un correo cuando sale un Zasca nuevo. Con doble confirmación:
+                primero lo pides, después lo confirmas desde tu bandeja. Nada
+                más.
+              </p>
+              <p className="note">
+                <Link className="link-arrow" to="/newsletter">
+                  Cómo funciona el boletín
+                </Link>
+              </p>
+            </div>
+            <NewsletterForm />
           </div>
         </div>
       </section>

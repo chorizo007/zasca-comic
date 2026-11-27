@@ -1351,6 +1351,99 @@ h2.section-title {
   opacity: 0.7;
 }
 
+/* ---------- Boletín ------------------------------------------------------- */
+
+.newsletter-block {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 46px;
+  align-items: start;
+  border: var(--line);
+  background: var(--paper-2);
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: 38px 40px 40px;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+  justify-items: stretch;
+}
+
+.form .btn {
+  justify-self: start;
+}
+
+.field label {
+  display: block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.field input[type="email"] {
+  width: 100%;
+  padding: 13px 14px;
+  border: var(--line);
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.field input[type="email"]::placeholder {
+  color: rgba(23, 19, 15, 0.45);
+}
+
+.checkbox {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.checkbox input {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  accent-color: var(--red);
+}
+
+.form-status {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  border-left: 4px solid var(--red);
+  background: rgba(198, 47, 29, 0.07);
+  padding: 10px 12px;
+}
+
+.form-status--ok {
+  border-color: var(--mint);
+  background: rgba(44, 106, 82, 0.09);
+}
+
+.form-status a {
+  font-weight: 600;
+}
+
+.form-note {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
 /* ---------- Varios -------------------------------------------------------- */
 
 .tags {
@@ -1480,9 +1573,14 @@ h2.section-title {
   }
 
   .band-grid,
-  .panel-grid {
+  .panel-grid,
+  .newsletter-block {
     grid-template-columns: 1fr;
     gap: 34px;
+  }
+
+  .newsletter-block {
+    padding: 30px 24px 32px;
   }
 
   .detail-hero {
